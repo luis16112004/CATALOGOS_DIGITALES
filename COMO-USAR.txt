@@ -1,0 +1,34 @@
+MI CATÁLOGO · OLIMPO 50
+=======================
+
+PARA TU MAMÁ
+  Solo tiene que abrir el link de la página (GitHub Pages) en su celular.
+  Sus productos se guardan solos en ese celular. Que siempre lo abra desde ahí mismo
+  (por ejemplo, desde el mensaje de WhatsApp donde le mandaste el link).
+
+QUÉ HACE CADA PESTAÑA
+  Productos  → Agregar, editar (lápiz), ocultar (ojo) o borrar (bote) productos.
+               Las flechas cambian el orden. También puede tocar un producto
+               en la vista previa para editarlo.
+  Diseño     → Colores, tipo de letra, cuántos productos por hoja, forma de las
+               fotos, foto de portada y logo.
+  Textos     → Título, frase de portada, WhatsApp, redes sociales, etc.
+
+DESCARGAR EL CATÁLOGO
+  Botón rosa "PDF" (arriba a la derecha).
+  Si algún día falla: "Más → Imprimir catálogo" y elegir "Guardar como PDF".
+
+COPIA DE SEGURIDAD (para ti)
+  "Más → Guardar respaldo" crea un archivo .json con todo el catálogo.
+  "Más → Cargar un respaldo" lo recupera en cualquier celular o computadora.
+
+ACTUALIZAR LA PÁGINA (cuando cambiemos el programa)
+  Desde esta carpeta:  git add -A   →   git commit -m "cambios"   →   git push
+  GitHub Pages se actualiza solo en 1 o 2 minutos. Los productos de tu mamá no se borran.
+
+USARLO EN LA COMPUTADORA
+  También funciona con doble clic en "index.html" (mejor en Chrome o Edge).
+  Lo que se guarda así queda en esa computadora, separado de lo del celular.
+
+IMPORTANTE
+  Los precios y los datos de contacto que vienen son DE EJEMPLO: hay que cambiarlos.

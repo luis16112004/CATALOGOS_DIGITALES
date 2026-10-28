@@ -1,0 +1,235 @@
+/* Diseño de las hojas del catálogo.
+   Todo va en px fijos (794 × 1123 = hoja A4) para que el PDF salga idéntico a la vista previa. */
+
+.pg {
+  position: relative;
+  width: 794px;
+  height: 1123px;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: var(--c-fondo);
+  color: var(--c-texto);
+  font-family: var(--f-txt);
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: left;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  -webkit-font-smoothing: antialiased;
+}
+.pg *, .pg *::before, .pg *::after { box-sizing: border-box; margin: 0; padding: 0; }
+.pg h3 { font-weight: inherit; }
+
+/* ---------- Logo ---------- */
+.pg .logo { display: flex; flex-direction: column; align-items: center; }
+.pg .logo svg { display: block; }
+.pg .logo-marca {
+  font-family: 'Exo 2', var(--f-txt);
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: .04em;
+  line-height: 1;
+  margin-top: .24em;
+  white-space: nowrap;
+}
+.pg .logo-img { display: block; width: auto; height: auto; }
+
+/* ---------- Encabezado, pie y área de productos ---------- */
+.pg-head {
+  position: absolute; top: 34px; left: 56px; right: 56px; height: 52px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--c-linea);
+}
+.pg-head .logo { flex-direction: row; align-items: center; gap: 10px; }
+.pg-head .logo-marca { margin-top: 0; }
+.head-txt { font-size: 9px; letter-spacing: 3.5px; text-transform: uppercase; color: var(--c-tenue); }
+
+.pg-foot {
+  position: absolute; left: 56px; right: 56px; bottom: 30px; height: 26px;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 9px; letter-spacing: 2.2px; text-transform: uppercase; color: var(--c-tenue);
+}
+.pg-num { display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--c-oscuro); letter-spacing: 2px; }
+.pg-num i { display: block; width: 26px; height: 1.5px; background: var(--c-rosa); }
+
+.pg-cuerpo { position: absolute; top: 112px; left: 56px; right: 56px; bottom: 80px; }
+
+/* ---------- Producto (partes comunes) ---------- */
+.prod { position: relative; display: flex; min-width: 0; min-height: 0; }
+.prod-foto {
+  position: relative; flex: none; overflow: hidden;
+  background-color: var(--c-marco); background-repeat: no-repeat; background-position: center;
+}
+.prod-foto.vacia { background: var(--c-rosa-fondo); }
+.foto-vacia { position: absolute; left: 0; top: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; }
+
+.forma-redondeada .prod-foto { border-radius: 14px; }
+.l4.forma-redondeada .prod-foto, .l6.forma-redondeada .prod-foto { border-radius: 10px; }
+.forma-arco.l1 .prod-foto { border-radius: 250px 250px 0 0; }
+.forma-arco.l2 .prod-foto { border-radius: 168px 168px 0 0; }
+.forma-arco.l4 .prod-foto { border-radius: 80px 80px 0 0; }
+.forma-arco.l6 .prod-foto { border-radius: 107px 107px 0 0; }
+
+.etq {
+  position: absolute; top: 14px; left: 14px;
+  padding: 5px 11px 4px; border-radius: 99px;
+  background: var(--c-rosa); color: var(--c-sobre-rosa);
+  font-family: var(--f-txt); font-size: 8.5px; font-weight: 600; letter-spacing: 1.8px;
+  text-transform: uppercase; line-height: 1.3; white-space: nowrap;
+}
+.etq.agotado { background: var(--c-oscuro); color: var(--c-contra-txt); }
+.forma-arco .etq { top: auto; left: auto; bottom: 14px; right: 14px; }
+.l4 .etq, .l6 .etq { top: 10px; left: 10px; font-size: 7.5px; padding: 4px 9px 3px; letter-spacing: 1.4px; }
+.forma-arco.l4 .etq, .forma-arco.l6 .etq { top: auto; left: auto; bottom: 10px; right: 10px; }
+
+.num-cat { display: flex; align-items: center; gap: 12px; }
+.num { font-family: var(--f-tit); color: var(--c-rosa-txt); font-size: 15px; letter-spacing: 2px; font-weight: 500; line-height: 1.2; }
+.cat { font-size: 8.5px; letter-spacing: 2.6px; text-transform: uppercase; color: var(--c-tenue); font-weight: 500; line-height: 1.4; }
+.num-cat .cat { padding-left: 12px; border-left: 1px solid var(--c-linea); }
+.nombre { font-family: var(--f-tit); color: var(--c-oscuro); font-weight: 500; line-height: 1.08; }
+.raya { width: 44px; height: 2px; background: var(--c-rosa); }
+.desc { color: var(--c-texto); }
+
+.mini { font-size: 8px; letter-spacing: 2.4px; text-transform: uppercase; color: var(--c-tenue); margin-bottom: 8px; font-weight: 500; }
+.colores { display: flex; flex-wrap: wrap; gap: 6px 14px; }
+.color { display: flex; align-items: center; gap: 7px; font-size: 10.5px; color: var(--c-texto); line-height: 1.3; }
+.dot { display: block; width: 13px; height: 13px; border-radius: 50%; border: 1px solid rgba(0, 0, 0, .16); flex: none; }
+.tallas { display: flex; flex-wrap: wrap; gap: 6px; }
+.tallas span {
+  min-width: 30px; padding: 5px 7px 4px; border: 1px solid var(--c-linea);
+  color: var(--c-oscuro); font-size: 9.5px; letter-spacing: 1px; text-align: center; font-weight: 500; line-height: 1.2;
+}
+.tallas-txt { font-size: 8.5px; letter-spacing: 1.5px; color: var(--c-tenue); text-transform: uppercase; }
+
+.precio { font-family: var(--f-txt); color: var(--c-rosa-txt); font-weight: 600; letter-spacing: .5px; line-height: 1.1; white-space: nowrap; }
+.precio .antes { color: var(--c-tenue); text-decoration: line-through; font-weight: 400; font-size: .6em; margin-right: 8px; }
+.precio.sin { font-size: 10.5px !important; letter-spacing: 2px; text-transform: uppercase; color: var(--c-tenue); font-weight: 500; }
+.codigo { font-size: 8.5px; letter-spacing: 2px; text-transform: uppercase; color: var(--c-tenue); }
+
+/* ---------- 1 producto por hoja ---------- */
+.l1 .prod { flex-direction: column; height: 100%; }
+.l1 .foto-caja { position: relative; width: 500px; height: 590px; margin: 4px auto 0; flex: none; }
+.l1 .deco { position: absolute; left: 20px; top: 20px; width: 500px; height: 590px; background: var(--c-rosa-fondo); }
+.l1.forma-redondeada .deco { border-radius: 14px; }
+.l1.forma-arco .deco { border-radius: 250px 250px 0 0; }
+.l1 .prod-foto { position: absolute; left: 0; top: 0; width: 500px; height: 590px; }
+.l1 .prod-info { display: flex; gap: 36px; margin-top: 52px; flex: 1; min-height: 0; }
+.l1 .info-a { flex: 1.35; min-width: 0; }
+.l1 .info-b { flex: 1; min-width: 0; padding-left: 30px; border-left: 1px solid var(--c-linea); display: flex; flex-direction: column; gap: 16px; }
+.l1 .nombre { font-size: 38px; margin: 10px 0 14px; }
+.l1 .raya { margin-bottom: 14px; }
+.l1 .desc { font-size: 12px; line-height: 1.75; }
+.l1 .precio { font-size: 28px; }
+
+/* ---------- 2 productos por hoja ---------- */
+.l2 { display: flex; flex-direction: column; gap: 36px; }
+.l2 .prod { height: 447px; flex: none; align-items: center; }
+.l2 .prod-foto { width: 335px; height: 447px; }
+.l2 .prod-info { flex: 1; min-width: 0; height: 100%; padding-left: 44px; display: flex; flex-direction: column; justify-content: center; }
+.l2 .prod:nth-child(even) { flex-direction: row-reverse; }
+.l2 .prod:nth-child(even) .prod-info { padding-left: 0; padding-right: 44px; }
+.l2 .nombre { font-size: 34px; margin: 12px 0 16px; }
+.l2 .raya { margin-bottom: 18px; }
+.l2 .desc { font-size: 11.5px; line-height: 1.7; margin-bottom: 22px; }
+.l2 .info-b { display: flex; flex-direction: column; gap: 15px; }
+.l2 .precio { font-size: 26px; margin-top: 2px; }
+
+/* ---------- 4 productos por hoja (lista) ---------- */
+.l4 { display: flex; flex-direction: column; gap: 12px; }
+.l4 .sep { display: block; height: 1px; background: var(--c-linea); flex: none; }
+.l4 .prod { height: 213px; flex: none; align-items: stretch; }
+.l4 .prod-foto { width: 160px; height: 213px; }
+.l4 .prod-info { flex: 1; min-width: 0; display: flex; gap: 26px; padding-left: 28px; align-items: center; }
+.l4 .info-a { flex: 1; min-width: 0; }
+.l4 .info-b {
+  width: 180px; flex: none; align-self: stretch; padding-left: 24px; border-left: 1px solid var(--c-linea);
+  display: flex; flex-direction: column; justify-content: center; gap: 12px;
+}
+.l4 .nombre { font-size: 25px; margin: 10px 0; }
+.l4 .desc { font-size: 11px; line-height: 1.65; }
+.l4 .colores { gap: 5px 12px; }
+.l4 .precio { font-size: 21px; }
+
+/* ---------- 6 productos por hoja (cuadrícula) ---------- */
+.l6 { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 28px 20px; }
+.l6 .prod { flex-direction: column; }
+.l6 .prod-foto { width: 100%; height: 285px; }
+.l6 .prod-info { flex: 1; min-height: 0; display: flex; flex-direction: column; padding-top: 14px; }
+.l6 .nombre { font-size: 18px; margin: 6px 0; line-height: 1.15; }
+.l6 .desc { font-size: 10px; line-height: 1.55; color: var(--c-tenue); }
+.l6 .info-b {
+  margin-top: auto; padding-top: 10px; border-top: 1px solid var(--c-linea);
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 8px;
+}
+.l6 .colores { gap: 5px; }
+.l6 .dot { width: 11px; height: 11px; }
+.l6 .tallas-txt { margin-top: 5px; font-size: 7.5px; }
+.l6 .precio { font-size: 16px; }
+.l6 .precio.sin { font-size: 8px !important; letter-spacing: 1.2px; }
+
+/* ---------- Portada ---------- */
+.por-top {
+  position: absolute; top: 44px; left: 56px; right: 56px;
+  display: flex; justify-content: space-between;
+  font-size: 9px; letter-spacing: 3.5px; text-transform: uppercase; color: var(--c-tenue);
+}
+.por-circulo { position: absolute; width: 330px; height: 330px; left: 104px; top: 340px; border-radius: 50%; background: var(--c-rosa-fondo); }
+.por-foto {
+  position: absolute; left: 182px; top: 108px; width: 430px; height: 520px;
+  background-color: var(--c-marco); background-repeat: no-repeat;
+}
+.por-linea { position: absolute; left: 200px; top: 126px; width: 430px; height: 520px; border: 1.5px solid var(--c-rosa); }
+.por-foto.arco, .por-linea.arco { border-radius: 215px 215px 0 0; }
+
+.por-texto { position: absolute; left: 56px; right: 56px; top: 700px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.por-titulo { display: flex; align-items: center; gap: 18px; margin-top: 38px; }
+.por-titulo i { display: block; width: 54px; height: 1px; background: var(--c-rosa); }
+.por-titulo span {
+  font-family: var(--f-tit); font-size: 24px; letter-spacing: 12px; padding-left: 12px;
+  text-transform: uppercase; color: var(--c-oscuro); font-weight: 500; line-height: 1.2;
+}
+.por-temporada { margin-top: 14px; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--c-tenue); }
+.por-frase { margin-top: 18px; font-family: var(--f-dec); font-size: 48px; line-height: 1.15; color: var(--c-rosa-txt); }
+.por-lema {
+  position: absolute; left: 0; right: 0; bottom: 46px; text-align: center;
+  font-size: 9px; letter-spacing: 5px; text-transform: uppercase; color: var(--c-tenue);
+}
+
+.sin-foto .por-circulo { width: 540px; height: 540px; left: 127px; top: 150px; }
+.sin-foto .por-texto { top: 268px; }
+.sin-foto .por-titulo { margin-top: 56px; }
+.sin-foto .por-titulo span { font-size: 30px; }
+.sin-foto .por-temporada { font-size: 11px; }
+.sin-foto .por-frase { margin-top: 26px; font-size: 60px; }
+
+/* ---------- Contraportada ---------- */
+.contra { background: var(--c-oscuro); color: var(--c-contra-txt); }
+.contra-centro {
+  position: absolute; top: 60px; bottom: 190px; left: 80px; right: 80px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+}
+.contra-titulo { margin-top: 56px; font-family: var(--f-dec); font-size: 60px; line-height: 1.15; color: var(--c-contra-rosa); }
+.contra-msg { margin-top: 10px; max-width: 430px; font-size: 12.5px; line-height: 1.8; color: var(--c-contra-tenue); }
+.contra-lista { margin-top: 40px; width: 450px; border-top: 1px solid var(--c-contra-linea); }
+.contra-item { display: flex; align-items: center; gap: 18px; padding: 14px 4px; border-bottom: 1px solid var(--c-contra-linea); text-align: left; }
+.contra-item .ico {
+  width: 38px; height: 38px; flex: none; border-radius: 50%; border: 1px solid var(--c-contra-linea);
+  display: flex; align-items: center; justify-content: center;
+}
+.contra-item .ico svg { display: block; }
+.contra-item .lbl { width: 104px; flex: none; font-size: 8.5px; letter-spacing: 2.6px; text-transform: uppercase; color: var(--c-contra-tenue); }
+.contra-item .val { font-size: 14px; font-weight: 500; letter-spacing: .3px; color: var(--c-contra-txt); }
+
+.contra-pie { position: absolute; left: 0; right: 0; bottom: 52px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.contra-lema { font-size: 9px; letter-spacing: 5px; text-transform: uppercase; color: var(--c-contra-txt); }
+.contra-by { display: flex; align-items: center; gap: 12px; margin-top: 10px; }
+.contra-by i { display: block; width: 70px; height: 1px; background: var(--c-contra-rosa); }
+.contra-by span { font-size: 8.5px; letter-spacing: 3px; text-transform: uppercase; color: var(--c-contra-rosa); font-weight: 600; }
+.contra-firma { margin-top: 8px; font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--c-contra-tenue); }
+.contra-nota { margin-top: 26px; font-size: 9px; letter-spacing: .5px; color: var(--c-contra-tenue); }
+
+/* ---------- Hoja sin productos ---------- */
+.hoja-vacia {
+  height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
+  color: var(--c-tenue); font-family: var(--f-tit); font-size: 22px;
+}
